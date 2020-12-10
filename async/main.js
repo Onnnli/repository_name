@@ -5,59 +5,55 @@
 // на странице в виде списка
 
 let list = document.querySelector('.task1');
+
 async function getTasks() {
     let mass = await fetch('https://test-todoist.herokuapp.com/api/tasks')
     .then(response => response.json())
-    .then(commits => commits);
 
     mass.forEach(element => {
         let li = document.createElement('li');
         li.innerHTML = element.description;
         list.appendChild(li);
     })
+    let result = await Promise.all(mass).then(value => {
+        console.log(value);
+    })
+    return result
 }
-console.log('task 1', getTasks());
+getTasks();
 
 
 
 //
 // Задача 2.
-
 // Создайте асинхронную функцию 
 // getUsers(names),
-
-
 // которая получает на вход массив логинов пользователей GitHub,
-
-
-
 // запрашивает у GitHub информацию о них 
 //и возвращает массив объектов-пользователей.
-
-
-
-
 // Информация о пользователе GitHub с логином USERNAME 
 // доступна по ссылке: https://api.github.com/users/USERNAME.
-let names = ['ivey', 'wycats'];
+
+
+
+let names = ['ivey', 'wycats', 'Onnnli'];
 
 async function getUsers(names) {
     let mass = []
 
-
     for(let item of names) {
         let username = await fetch(`https://api.github.com/users/${item}`)
             .then(response => response.json());
+
         mass.push(username);
     }
-    let  result = await Promise.all(mass)
+    let  result = await Promise.all(mass).then(value => {
+        console.log(value)
+    })
     return result;
 }
-    
+
 getUsers(names);
-
-
-
 
 
 // Необходимо создать страницу 
@@ -69,10 +65,12 @@ getUsers(names);
 // кнопка добавить категорию 
 //(POST запрос - https://test-todoist.herokuapp.com/api/categories) - 
 //после успешной отправки этого запроса - добавленная категория появляется в списке категорий
+
+
 let out = document.querySelector('.out');
 let cat = {
         id: 333,
-        name:"hello"
+        name:"moood"
     }
     
 async function f2() {
@@ -86,24 +84,19 @@ async function f2() {
       })
       .then(result => result.json())
 
-      console.log(response);
+    console.log(response);
 }
 
 document.querySelector('button').onclick = f2;
 
 
-
 async function f1() {
     let get = await fetch('https://test-todoist.herokuapp.com/api/categories')
-        .then(response => response.json())
+    .then(response => response.json())
   
-        for (let item of get){
-            console.log(item);
-            out.innerHTML += ' ' + item.name;
-        }
-    
+    for (let item of get){
+        //console.log(item);
+        out.innerHTML += ' ' + item.name;
+    }
 }
-f1()
-
-
 
