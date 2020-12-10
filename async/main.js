@@ -18,7 +18,7 @@ async function getTasks() {
     let result = await Promise.all(mass).then(value => {
         console.log(value);
     })
-    return result
+    return result;
 }
 getTasks();
 
@@ -67,10 +67,9 @@ getUsers(names);
 //после успешной отправки этого запроса - добавленная категория появляется в списке категорий
 
 
-let out = document.querySelector('.out');
 let cat = {
-        id: 333,
-        name:"moood"
+    id: 333,
+        name:"kkk"
     }
     
 async function f2() {
@@ -78,25 +77,28 @@ async function f2() {
     let response = await fetch('https://test-todoist.herokuapp.com/api/categories', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json;charset=utf-8'
+            'Content-Type': 'application/json;charset=utf-8'
         },
         body: JSON.stringify(cat)
-      })
-      .then(result => result.json())
+    })
+    .then(result => result.json())
 
     console.log(response);
+
+    out.innerHTML += ' ' + response.name;
 }
 
 document.querySelector('button').onclick = f2;
 
+let out = document.querySelector('.out');
 
 async function f1() {
     let get = await fetch('https://test-todoist.herokuapp.com/api/categories')
     .then(response => response.json())
-  
+    
     for (let item of get){
-        //console.log(item);
-        out.innerHTML += ' ' + item.name;
+        out.innerHTML += ' ' + item.name
     }
 }
 
+f1();
