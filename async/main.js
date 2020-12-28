@@ -68,8 +68,8 @@ getUsers(names);
 
 
 let cat = {
-    id: 333,
-        name:"kkk"
+    id: 5555,
+    name: "eeee"
     }
     
 async function f2() {
@@ -89,7 +89,7 @@ async function f2() {
 }
 
 document.querySelector('button').onclick = f2;
-
+    
 let out = document.querySelector('.out');
 
 async function f1() {
@@ -102,3 +102,4 @@ async function f1() {
 }
 
 f1();
+    
